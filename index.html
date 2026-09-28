@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta
+    name="description"
+    content="Unofficial UX concept for a lightweight tactical enhancement to the Online Soccer Manager match experience."
+  >
+  <title>Tactical Match Experience – Unofficial OSM UX Concept</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="page">
+  <div class="header">
+    <div>
+      <p class="eyebrow">PRESENTATION-READY MOBILE CONCEPT · V0.6</p>
+      <h1>Tactical Match Experience</h1>
+    </div>
+    <div class="header-note">OSM-style pacing + clearer event context</div>
+  </div>
+
+  <div class="layout">
+    <section class="device">
+      <div style="position:absolute;left:8px;top:42%;width:4px;height:54px;border-radius:4px;background:#29475c"></div>
+      <div style="position:absolute;right:8px;top:37%;width:4px;height:74px;border-radius:4px;background:#29475c"></div>
+      <div style="position:absolute;right:10px;top:14%;width:7px;height:7px;border-radius:50%;background:#2e536b"></div>
+      <div class="screen">
+        <div class="topbar">
+          <div class="top-left"><span class="top-ball"></span> MATCH EXPERIENCE</div>
+          <div class="top-right">Landscape match view · Concept prototype</div>
+        </div>
+
+        <div class="scorebar">
+          <div class="comp">CHAMPIONS CUP · MATCHDAY</div>
+          <div class="score-grid">
+            <div class="team"><div class="crest rm">RM</div><div class="team-name">Real Madrid</div></div>
+            <div class="score-mid"><div id="score" class="score">0 - 0</div><div id="clock" class="clock">00:00</div></div>
+            <div class="team"><div class="crest liv">LIV</div><div class="team-name">Liverpool</div></div>
+          </div>
+          <div class="tactics">
+            <span class="chip">4-3-3</span><span class="chip">Balanced</span><span class="chip">Normal tempo</span><span class="chip">4-2-3-1</span>
+          </div>
+        </div>
+
+        <div class="match-body">
+          <div class="pitch-col">
+            <div id="eventDock" class="event-dock">
+              <div class="event-dock-icon" id="eventIconDock">▶</div>
+              <div class="event-dock-main">
+                <div class="event-dock-top">
+                  <span class="event-dock-type" id="eventTypeDock">MATCH FLOW</span>
+                  <span class="event-dock-minute" id="eventMinuteDock">0'</span>
+                </div>
+                <div class="event-dock-title" id="eventTitleDock">Kick-off</div>
+                <div class="event-dock-text" id="eventTextDock">The match starts in compact mode.</div>
+              </div>
+            </div>
+            <div class="pitch" id="pitch">
+              <div class="zone left" data-zone="left"></div>
+              <div class="zone middle" data-zone="middle"></div>
+              <div class="zone right" data-zone="right"></div>
+
+              <div class="third a"></div><div class="third b"></div><div class="half"></div><div class="circle"></div>
+              <div class="box l"></div><div class="box r"></div><div class="goal l"></div><div class="goal r"></div>
+              <div class="zlabel zl">DEFENCE</div><div class="zlabel zm">MIDFIELD</div><div class="zlabel zr">ATTACK</div>
+
+              <div id="players"></div><div id="labels"></div><div id="arrow" class="arrow"></div>
+              <div id="ball" class="ball hidden"></div><div id="pulse" class="pulse"></div>
+
+              <div id="eventCard" class="event-card" style="display:none">
+                <div id="eventIcon" class="event-icon">⚽</div>
+                <div id="eventType" class="event-type">KEY EVENT</div>
+                <div id="eventTitle" class="event-title">Event</div>
+                <div id="eventText" class="event-text">Description</div>
+              </div>
+            </div>
+
+            <div class="match-state">
+              <div class="state"><div class="k">VISUAL MODE</div><div id="modeText" class="v">Normal play</div></div>
+              <div class="state"><div class="k">ACTIVE AREA</div><div id="zoneText" class="v">Midfield</div></div>
+              <div class="state"><div class="k">CURRENT NOTE</div><div id="noteText" class="v">Ball hidden during standard play</div></div>
+            </div>
+
+            <div class="controls">
+              <button type="button" aria-label="Previous event" id="prevBtn" class="secondary">◀ Prev</button>
+              <button type="button" aria-label="Play current event" id="playBtn" class="primary">▶ Event</button>
+              <button type="button" aria-label="Next event" id="nextBtn" class="secondary">Next ▶</button>
+              <button type="button" aria-label="Play full match" id="playMatchBtn" class="primary alt">▶ Full Match</button>
+              <button type="button" aria-label="Pause full match" id="pauseBtn" class="secondary">⏸ Pause</button>
+              <button type="button" aria-label="Reset prototype" id="resetBtn" class="secondary">↺ Reset</button>
+            </div>
+          </div>
+
+          <aside class="feed-col">
+            <div class="feed-head">
+              <div class="t">Live match history</div>
+              <div class="s">Ball-area notes + important events</div>
+            </div>
+            <div id="feed" class="feed"></div>
+            <div class="feed-foot">Tip: the full-match demo can run automatically, or click any history item to jump to that moment.</div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <aside class="side">
+      <section class="card">
+        <h2>Before / after</h2>
+        <div class="before-after">
+          <div class="ba before">
+            <b>Current experience</b>
+            <span>Short match pacing, commentary and dynamic simulation visuals.</span>
+          </div>
+          <div class="ba after">
+            <b>Proposed enhancement</b>
+            <span>Same pacing, but with clearer pitch thirds, event cards and short contextual 2D key moments.</span>
+          </div>
+        </div>
+        <p class="pitch-note">The proposal is an enhancement layer, not a replacement for the existing match engine or match flow.</p>
+      </section>
+
+      <section class="card">
+        <h3>How the interaction works</h3>
+        <div class="flow">
+          <div class="step"><div class="num">1</div><div><b>Normal play</b><span>Only the active third pulses. The ball stays hidden.</span></div></div>
+          <div class="step"><div class="num">2</div><div><b>Meaningful event detected</b><span>The match switches temporarily to key-moment mode.</span></div></div>
+          <div class="step"><div class="num">3</div><div><b>Contextual visualisation</b><span>Relevant players, ball path and event card appear briefly.</span></div></div>
+          <div class="step"><div class="num">4</div><div><b>Return to normal flow</b><span>The screen goes back to the simple OSM-like match monitor.</span></div></div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h3>Jump directly to a demo event</h3>
+        <div id="jumpGrid" class="jump-grid"></div>
+      </section>
+
+      <section class="card">
+        <h3>Design boundary</h3>
+        <p>
+          This is a UX concept only. It does not assume OSM's internal architecture, event schema or implementation language.
+          The animations are scripted solely to communicate how an enhancement could feel to the player.
+        </p>
+      </section>
+    </aside>
+  </div>
+</div>
+  <script src="app.js" defer></script>
+</body>
+</html>
